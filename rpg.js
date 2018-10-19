@@ -23,6 +23,7 @@ var monstre = {
     endurance : 7,
     pv : 7
 } ;
+var premiercoup;
 
 
 
@@ -89,20 +90,10 @@ var monstre = {
 
     function aventure(){
         monstre_aleatoire();
-        document.getElementById('nomJoueur').innerHTML=perso.pseudo;
-        document.getElementById('pvjoueur').innerHTML="PV :" + perso.pv;
-        document.getElementById('forcejoueur').innerHTML="Force :" + perso.force;
-        document.getElementById('endurancejoueur').innerHTML="Endurance :" + perso.endurance;
-        document.getElementById('agi').innerHTML="Agilité :" + perso.agilite;
-
-        document.getElementById('nomMonstre').innerHTML=monstre.nom;
-        document.getElementById('pvmonstre').innerHTML="PV :" + monstre.pv;
-        document.getElementById('forcemonstre').innerHTML="Force :" + monstre.force;
-        document.getElementById('endurancemonstre').innerHTML="Endurance :" + monstre.endurance;
+        
 
         
         var chanceux = Math.floor(Math.random() * 100) + 1;
-        var premiercoup;
         switch (chanceux){
             case (chanceux <= perso.agilite ? chanceux : null):
                 premiercoup = 1;
@@ -124,7 +115,6 @@ var monstre = {
                     taper();
                 }
                 else{
-                    loot = Math.floor(Math.random() *10);
                     monstremort();
                 }
             }
@@ -146,7 +136,6 @@ var monstre = {
                 }
             }
             else {
-                loot = Math.floor(Math.random() *10);
                 monstremort();
             }
         }
@@ -156,20 +145,42 @@ var monstre = {
 
 
     function monstremort(){
+        document.getElementById('nomJoueur').innerHTML=perso.pseudo;
+        document.getElementById('pvjoueur').innerHTML="PV :" + perso.pv;
+        document.getElementById('forcejoueur').innerHTML="Force :" + perso.force;
+        document.getElementById('endurancejoueur').innerHTML="Endurance :" + perso.endurance;
+        document.getElementById('agi').innerHTML="Agilité :" + perso.agilite;
+
+        document.getElementById('nomMonstre').innerHTML=monstre.nom;
+        document.getElementById('pvmonstre').innerHTML="PV :" + monstre.pv;
+        document.getElementById('forcemonstre').innerHTML="Force :" + monstre.force;
+        document.getElementById('endurancemonstre').innerHTML="Endurance :" + monstre.endurance;
+        var loot = Math.floor(Math.random() *10);
         bourse = bourse + 3;
         if (loot > 0){
             nbtour++;
-            alert("T'as battu" + monstre.nom + "et t'as gagné 3 pièces d'or, pas mal pas mal.");
+            alert("T'as battu " + monstre.nom + " et t'as gagné 3 pièces d'or, pas mal pas mal.");
         }
         else{
             nbtour++;
-            alert("Tu as vaincu" + monstre.nom + "et t'as gagné 3 pièces d'or et une petite potion de soin, GG !");
+            inventaire.potionSoinMineur++;
+            alert("Tu as vaincu " + monstre.nom + " et t'as gagné 3 pièces d'or et une petite potion de soin, GG !");
         }
     }
 
     function persomort(){
+        document.getElementById('nomJoueur').innerHTML=perso.pseudo;
+        document.getElementById('pvjoueur').innerHTML="PV :" + perso.pv;
+        document.getElementById('forcejoueur').innerHTML="Force :" + perso.force;
+        document.getElementById('endurancejoueur').innerHTML="Endurance :" + perso.endurance;
+        document.getElementById('agi').innerHTML="Agilité :" + perso.agilite;
+
+        document.getElementById('nomMonstre').innerHTML=monstre.nom;
+        document.getElementById('pvmonstre').innerHTML="PV :" + monstre.pv;
+        document.getElementById('forcemonstre').innerHTML="Force :" + monstre.force;
+        document.getElementById('endurancemonstre').innerHTML="Endurance :" + monstre.endurance;
         nbtour++;
-        alert(monstre.nom + "t'a niqué bien sale.");
+        alert(monstre.nom + " t'a niqué bien sale.");
     }
 
 
@@ -191,9 +202,10 @@ var monstre = {
     
     function achatPotionFor(){
         if (bourse >=2){
+            alert("Tu as acheté une potion de Force.");
             bourse = bourse - 2;
-            potionFor++;
-            alert ("Tu as acheté une potion de Force.");
+            document.getElementById('bourse').innerHTML="Bourse :" + bourse + " pièces d'or";
+            inventaire.potionForce++;
         }
         else{
             alert("T'es fauché bolosse.");
@@ -202,9 +214,10 @@ var monstre = {
     
     function achatPotionAgi(){
         if (bourse >=2){
+            alert("Tu as acheté une potion d'agilité.");
             bourse = bourse - 2;
-            potionAgi++;
-            alert ("Tu as acheté une potion d'agilité.");
+            document.getElementById('bourse').innerHTML="Bourse :" + bourse + " pièces d'or";
+            inventaire.potionAgi++;         
         }
         else{
             alert("T'es fauché bolosse.");
@@ -213,9 +226,10 @@ var monstre = {
     
     function achatPotionEndu(){
         if (bourse >=2){
+            alert("Tu as acheté une potion d'endurance.");
             bourse = bourse - 2;
-            potionEndu++;
-            alert ("Tu as acheté une potion d'endurance.");
+            document.getElementById('bourse').innerHTML="Bourse :" + bourse + " pièces d'or";
+            inventaire.potionEndu++;
         }
         else{
             alert("T'es fauché bolosse.");
@@ -224,9 +238,10 @@ var monstre = {
     
     function achatPotionVie(){
         if (bourse >=5){
+            alert("Tu as acheté une potion de vie.");
             bourse = bourse - 5;
-            potionAgi++;
-            alert ("Tu as acheté une potion de vie.");
+            document.getElementById('bourse').innerHTML="Bourse :" + bourse + " pièces d'or";
+            inventaire.potionSoinMajeur++;
         }
         else{
             alert("T'es fauché bolosse.");
@@ -239,12 +254,12 @@ var monstre = {
 
 
 function Inventaire(){
-	document.getElementById("bourse").innerHTML=bourse;
+	document.getElementById("bourse").innerHTML="Bourse :" + bourse + " pièces d'or";
 	document.getElementById("useforce").innerHTML=inventaire.potionForce;
 	document.getElementById("useagi").innerHTML=inventaire.potionAgi;
     document.getElementById("useendu").innerHTML=inventaire.potionEndu;
-    document.getElementById("usemineur").innerHTML=inventaire.potionSoinMineur;
-	document.getElementById("usemajeur").innerHTML=inventaire.potionSoinMajeur;
+    document.getElementById("usesoinmin").innerHTML=inventaire.potionSoinMineur;
+	document.getElementById("usesoinmaj").innerHTML=inventaire.potionSoinMajeur;
 }
                                      
 
@@ -254,6 +269,8 @@ function useForce(){
     if(inventaire.potionForce >= 1){
 	    perso.force++;
         inventaire.potionForce--;
+        document.getElementById("useforce").innerHTML=inventaire.potionForce;
+        document.getElementById('forcejoueur').innerHTML="Force :" + perso.force;
         alert('Tu as gagné 1 point de force.');
     }
     else{
@@ -265,7 +282,9 @@ function useForce(){
 function useAgi(){
 	if(inventaire.potionAgi >= 1){
 	    perso.agilite++;
-        inventaire.potionForce--;
+        inventaire.potionAgi--;
+        document.getElementById("useagi").innerHTML=inventaire.potionAgi;
+        document.getElementById('agi').innerHTML="Agilité :" + perso.agilite;
         alert("Tu as gagné 1 point d'agilité.");
     }
     else{
@@ -276,8 +295,10 @@ function useAgi(){
 
 function useEndu(){
 	if(inventaire.potionEndu >= 1){
-	    perso.force++;
+	    perso.endurance++;
         inventaire.potionEndu--;
+        document.getElementById("useendu").innerHTML=inventaire.potionEndu;
+        document.getElementById('endurancejoueur').innerHTML="Endurance :" + perso.endurance;
         alert("Tu as gagné 1 point d'endurance.");
     }
     else{
@@ -289,7 +310,10 @@ function useEndu(){
 function useSoinMineur(){
 	if (perso.pv <= perso.endurance && potionSoinMineur >= 1){
 		perso.pv = perso.pv + 10;
-		potionSoinMineur--;
+        inventaire.potionSoinMineur--;
+        document.getElementById("usesoinmin").innerHTML=inventaire.potionSoinMineur;
+        document.getElementById('pvjoueur').innerHTML="PV :" + perso.pv;
+        alert('Tu as gagné 10 points de vie.');
 		if (perso.pv > perso.endurance){
 			perso.pv == perso.endurance;
 		}
@@ -299,22 +323,25 @@ function useSoinMineur(){
 	}
 	else if (perso.pv <= 0 && potionSoinMineur >= 1){
 		alert ("Mais t'es mort, tu peux pas l'utiliser.");
-	}
+    }
 }
 
 
 function useSoinMajeur(){
-	if (perso.pv <= perso.endurance && potionSoinMajeure >= 1){
+	if (perso.pv <= perso.endurance && potionSoinMajeur >= 1){
 		perso.pv = perso.pv + 20;
-		potionSoinMajeur--;
+        inventaire.potionSoinMajeur--;
+        document.getElementById("usesoinmaj").innerHTML=inventaire.potionSoinMajeur;
+        document.getElementById('pvjoueur').innerHTML="PV :" + perso.pv;
+        alert('Tu as gagné 20 points de vie.');
 		if (perso.pv > perso.endurance){
 			perso.pv == perso.endurance;
 		}
 	}
-	else if (perso.pv == perso.endurance && potionSoinMajeure >= 1){
+	else if (perso.pv == perso.endurance && potionSoinMajeur >= 1){
 		alert ("Tu as ta vie au maximum, la potion n'est pas utilisée");
 	}
-	else if (perso.pv <= 0 && potionSoinMajeure >= 1){
+	else if (perso.pv <= 0 && potionSoinMajeur >= 1){
 		alert ("T'es déjà mort, tu peux pas l'utiliser.");
 	}
 }
