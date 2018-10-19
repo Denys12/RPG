@@ -89,15 +89,14 @@ var monstre = {
             return premiercoup;
         }
 
-        if (premiercoup == 1){
-            alert('Vous commencez')
-            
-        }
-        else (premiercoup == 2){
+        //if (premiercoup == 1){
+        //    alert('Vous commencez')    
+        //}
+        //else (premiercoup == 2) {
 
-        }
+        //}
 
-        function
+        //function
 
 
 

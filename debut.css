@@ -1,37 +1,69 @@
 #debut {
     text-align: center;
     font-family: sans-serif;
+    background-color: #696969;
 }
 
 #aventure {
-
-
-
-}
-
-
-
-#attaque {
-    flex: 1;
-    margin-left: 5%;
-    border-radius: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    width: 50%;
     text-align: center;
-    
+    margin-left: 25%;
+    background-color: lightgrey;
 }
 
-#nomJoueur {
-    flex: 1;
+#nomJoueur {  
     border: 1px solid black;
     padding:10px;
-    margin: 250px;
-    height: 150px;
-    
 }
 
-#nomMonstre {
-    flex:1;
+#statJoueur {
     border: 1px solid black;
-    padding:20px;
-    margin: 900px;
-    height: 150px;
+    padding:10px;
+    width: 50%;
+    text-align: left;
+}
+
+#nomMonstre {   
+    border: 1px solid black;
+    padding:10px;
+}
+
+#statMonstre {
+    border: 1px solid black;
+    padding:10px;
+    width: 50%;
+    text-align: left;
+}
+
+#versMagasin {
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+#boutique {
+    text-align: left;
+    padding: 30px;
+    border: 1px solid black;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+#inventaire {
+    text-align: left;
+    padding: 30px;
+    border: 1px solid black;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+#bourse {
+    text-align: left;
+    margin-right: 7%;
+    margin-left: 80%;
+    padding-left: 1%;
+    border: 1px solid black;
+
 }
