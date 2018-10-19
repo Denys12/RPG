@@ -1,0 +1,102 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Debut</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="rpg.css" />
+        
+    </head>
+
+    <body>
+        <div id="debut">
+            <h1>Bienvenue dans le RPG</h1>
+            <hr>
+
+            <h3>Votre stuff de base</h3>
+            <p>Force = 10<br>
+            Agilite = 10<br>
+            Endurance = 100<br>
+            Une bourse d'or vide<br>
+            Un inventaire vide</p>
+        
+
+        <p><label>Entrez un pseudo pour commencer l'aventure!</label></p>
+            <input id="pseudo" type="text" placeholder="Entrez un pseudo">
+                <button onclick="run()">Commencer l'aventure</button>
+        </div>
+        <hr>
+
+        <!--besoin creer fonction fait poper la partie aventure
+            2images: un perso / un monstre-->
+        <div>
+            <h3 style="text-align:center">Match à Mort</h3>
+
+            <div id="aventure">
+                
+                <span id="nomJoueur">Joueur</span>
+                    <div class="statJoueur">
+                        <p>Stat Joueur :</p>
+                        <p id="pvjoueur">PV</p>
+                        <p id="forcejoueur">Force</p>
+                        <p id="endurancejoueur">Endurance</p>
+                        <p id="agi">Agilite</p>
+                    </div>
+                <span id="nomMonstre">Monstre</span>
+                    <div class="statMonstre">
+                        <p>Stat Monstre :</p>
+                        <p id="pvmonstre">PV</p>
+                        <p id="forcemonstre">Force</p>
+                        <p id="endurancemonstre">Endurance</p>
+                    </div>
+            </div>
+
+            <div>
+                <button onclick="Boutique()">Acces Magasin</button>
+            </div>
+        </div>
+        <hr>
+
+        <h3 style="text-align:center">Boutique</h3>
+        <div id="boutique">
+            <p>Potion de Force (+1) : 2 pièces <button onclick="achatPotionFor()">Acheter</button></p>
+            <p>Potion d'Agilite (+1) : 2 pièces <button onclick="achatPotionAgi()">Acheter</button></p>
+            <p>Potion d'Endurance (+1) : 2 pièces <button onclick="achatPotionEndu()">Acheter</button></p>
+            <p>Potion de Soin (+20) : 5 pièces <button onclick="achatPotionVie()">Acheter</button></p>
+        </div>
+        <div class="bourse">
+            <p id="bourse">Bourse :</p>
+        </div>
+        <div>
+            <button onclick="Inventaire()"">Acces Inventaire</button>
+        </div>
+        <hr>
+
+        <h3 style="text-align:center">Inventaire</h3>
+        <div id="inventaire">
+            <p><span id="useforce"></span> Potion de Force (+1) <button onclick="useForce()">Utiliser</button></p>
+            <p><span id="useagi"></span> Potion d'Agilite (+1) <button onclick="useAgi()">Utiliser</button></p>
+            <p><span id="useendu"></span> Potion d'Endurance (+1) <button onclick="useEndu()">Utiliser</button></p>
+            <p><span id="usesoinmin"></span> Potion de Soin Mineure (+10) <button onclick="useSoinMineur()">Utiliser</button></p>
+            <p><span id="usesoinmaj"></span> Potion de Soin Majeure (+20) <button onclick="useSoinMajeur()">Utiliser</button></p>    
+        </div>
+        <div>
+            <button onclick="run()">Retour dans l'Arene !</button>
+        </div>
+
+        <div>
+            <h1> Rentrer des données ci-dessous pour pouvoir afficher un tableau </h1>
+            <div>
+                <label for="pseudoscore">Pseudo</label>
+                <input type="text" id="pseudoscore">
+            </div>
+            <div>
+                <label for="score">Score</label>
+                <input type="number" id="score">
+            </div>
+            <div id="monTableau">Ici va s'afficher le tableau</div>
+            <button onClick="AddScore();">Cliquer pour afficher le Tableau</button>
+        </div>
+
+        <script src="rpg.js"></script>
+    </body>
+</html>
