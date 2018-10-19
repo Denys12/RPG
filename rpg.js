@@ -39,14 +39,14 @@ var monstre = {
             monstre.endurance = 7 + (1*nbtour);
             monstre.pv = monstre.endurance;
             alert("Bats-toi jusqu'à la mort !");
-            aventure();
+            taper();
         }
         else if (nbtour >= 1){
             monstre.force = 5+ (1*nbtour);
             monstre.endurance = 7 + (1*nbtour);
             monstre.pv = monstre.endurance;
             alert("C'est reparti mon kiki !!!");
-            aventure();
+            taper();
         }
     }
 
@@ -88,7 +88,6 @@ var monstre = {
 
 
     function aventure(){
-        nbtour++;
         monstre_aleatoire();
         document.getElementById('nomJoueur').innerHTML=perso.pseudo;
         document.getElementById('pvjoueur').innerHTML="PV :" + perso.pv;
@@ -112,14 +111,17 @@ var monstre = {
                 premiercoup = 2;
             break;
             }
+    }
 
-
+    function taper(){
+        aventure();
         if (premiercoup == 1){
             alert('Tu commences !')
             if(perso.pv > 0){
                 monstre.pv = monstre.pv - perso.force;
                 if(monstre.pv > 0){
                     perso.pv = perso.pv - monstre.force;
+                    taper();
                 }
                 else{
                     loot = Math.floor(Math.random() *10);
@@ -137,6 +139,7 @@ var monstre = {
                 perso.pv = perso.pv - monstre.force;
                 if(perso.pv > 0){
                     monstre.pv = monstre.pv - perso.force;
+                    taper();
                 }
                 else{
                     persomort();
@@ -155,15 +158,18 @@ var monstre = {
     function monstremort(){
         bourse = bourse + 3;
         if (loot > 0){
+            nbtour++;
             alert("T'as battu" + monstre.nom + "et t'as gagné 3 pièces d'or, pas mal pas mal.");
         }
         else{
+            nbtour++;
             alert("Tu as vaincu" + monstre.nom + "et t'as gagné 3 pièces d'or et une petite potion de soin, GG !");
         }
     }
 
     function persomort(){
-        alert(monstre.nom + "t'a niqué bien sale.")
+        nbtour++;
+        alert(monstre.nom + "t'a niqué bien sale.");
     }
 
 
