@@ -1,12 +1,13 @@
 
-// Merci à Kevin, c'est en ayant son code sous les yeux que j'ai pu réussir à tout comprendre
+
 
 var perso = {
 	pseudo : "",
 	force : 10,
 	agilite : 10,
 	endurance : 100,
-    pv : 100
+    pv : 100,
+    score : 0,
 } ;
 var bourse = 0;
 var nbtour = 0;
@@ -33,7 +34,7 @@ var premiercoup;
     function run(){
         perso.pseudo = document.getElementById('pseudo').value;
         if (perso.pseudo == ""){
-            alert('Tu dois rentrer un pseudo pour commencer bolosse.');
+            alert('Tu dois rentrer un pseudo pour commencer.');
         }
         else if (nbtour <= 0) {
             monstre.force = 5+ (1*nbtour);
@@ -159,12 +160,12 @@ var premiercoup;
         bourse = bourse + 3;
         if (loot > 0){
             nbtour++;
-            alert("T'as battu " + monstre.nom + " et t'as gagné 3 pièces d'or, pas mal pas mal.");
+            alert("Tu as vaincu " + monstre.nom + " et tu as gagné 3 pièces d'or, pas mal pas mal.");
         }
         else{
             nbtour++;
             inventaire.potionSoinMineur++;
-            alert("Tu as vaincu " + monstre.nom + " et t'as gagné 3 pièces d'or et une petite potion de soin, GG !");
+            alert("Tu as vaincu " + monstre.nom + " et tu as gagné 3 pièces d'or et une petite potion de soin, GG !");
         }
     }
 
@@ -180,7 +181,7 @@ var premiercoup;
         document.getElementById('forcemonstre').innerHTML="Force :" + monstre.force;
         document.getElementById('endurancemonstre').innerHTML="Endurance :" + monstre.endurance;
         nbtour++;
-        alert(monstre.nom + " t'a niqué bien sale.");
+        alert(monstre.nom + " t'a tué.");
     }
 
 
@@ -208,7 +209,7 @@ var premiercoup;
             inventaire.potionForce++;
         }
         else{
-            alert("T'es fauché bolosse.");
+            alert("Tu n'as pas assez d'argent.");
         }
     }
     
@@ -220,7 +221,7 @@ var premiercoup;
             inventaire.potionAgi++;         
         }
         else{
-            alert("T'es fauché bolosse.");
+            alert("Tu n'as pas assez d'argent.");
         }
     }
     
@@ -232,7 +233,7 @@ var premiercoup;
             inventaire.potionEndu++;
         }
         else{
-            alert("T'es fauché bolosse.");
+            alert("Tu n'as pas assez d'argent.");
         }
     }
     
@@ -244,7 +245,7 @@ var premiercoup;
             inventaire.potionSoinMajeur++;
         }
         else{
-            alert("T'es fauché bolosse.");
+            alert("Tu n'as pas assez d'argent.");
         }
     }
 
@@ -274,7 +275,7 @@ function useForce(){
         alert('Tu as gagné 1 point de force.');
     }
     else{
-        alert("Dommage t'en as pas en stock ahah");
+        alert("Tu n'en as plus en stock !");
     }
 }
 
@@ -288,7 +289,7 @@ function useAgi(){
         alert("Tu as gagné 1 point d'agilité.");
     }
     else{
-        alert("Dommage t'en as pas en stock ahah");
+        alert("Tu n'en as plus en stock !");
     }
 }
 
@@ -302,7 +303,7 @@ function useEndu(){
         alert("Tu as gagné 1 point d'endurance.");
     }
     else{
-        alert("Dommage t'en as pas en stock ahah");
+        alert("Tu n'en as plus en stock !");
     }
 }
 
@@ -322,7 +323,7 @@ function useSoinMineur(){
 		alert ("Tu as ta vie au maximum, la potion n'est pas utilisée");
 	}
 	else if (perso.pv <= 0 && potionSoinMineur >= 1){
-		alert ("Mais t'es mort, tu peux pas l'utiliser.");
+		alert ("Tu es déjà mort, tu ne peux pas l'utiliser.");
     }
 }
 
@@ -342,14 +343,14 @@ function useSoinMajeur(){
 		alert ("Tu as ta vie au maximum, la potion n'est pas utilisée");
 	}
 	else if (perso.pv <= 0 && potionSoinMajeur >= 1){
-		alert ("T'es déjà mort, tu peux pas l'utiliser.");
+		alert ("Tu es déjà mort, tu ne peux pas l'utiliser.");
 	}
 }
 
 
 
-// Tableau des scores (merci Antonin sans qui... non en fait il marche pas)
-
+// Tableau des scores 
+/*
 
 // On commence par créer deux variables, qui contiendront le pseudo et le score
 var scoreJoueur = 0;
@@ -363,12 +364,12 @@ var score = [];
 function AddScore() {
 
 	//récupérer les données insérées dans les input
-	myPseudo = document.getElementById("pseudo").value;
+	perso.pseudo = document.getElementById("pseudo").value;
 	scoreJoueur = document.getElementById("score").value;
 
 	//créer un nouvel objet contenant le pseudo, ici la variable myPseudo associée à la key pseudo,
 	//et le score, ici la variable scoreJoueur associée à la key score
-	var obj = {pseudo : myPseudo, score : scoreJoueur};
+	var obj = {pseudo : perso.pseudo, score : scoreJoueur};
 
 	//ajouter cet objet à notre tableau
 	score.push(obj);
@@ -425,3 +426,4 @@ function AfficherTab(){
 
 
 
+*/
